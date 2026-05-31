@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano SAT · Karina · Meta 1520</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+/* ──────────────────────────────────────────
+   TOKENS & THEME
+────────────────────────────────────────── */
+:root {
+  --bg: #f5f3ef;
+  --bg2: #eceae4;
+  --bg3: #e2dfd8;
+  --surface: #ffffff;
+  --surface2: #f9f7f4;
+  --border: #d8d4cc;
+  --border2: #c8c3b8;
+  --text: #1a1814;
+  --text2: #5a5650;
+  --text3: #8a8680;
+  --accent: #1a6b4a;
+  --accent2: #145c3e;
+  --accent-bg: #e8f5ef;
+  --math: #3b3fbf;
+  --math-bg: #eceeff;
+  --rw: #9b2563;
+  --rw-bg: #fceef6;
+  --rest-bg: #f5f0e8;
+  --rest: #8a7050;
+  --test-bg: #fff4e0;
+  --test: #a05000;
+  --eval-bg: #ffeee8;
+  --eval: #c0391b;
+  --exam-bg: #1a6b4a;
+  --exam: #ffffff;
+  --done-bg: #e8f5ef;
+  --done-text: #145c3e;
+  --radius: 12px;
+  --radius-sm: 7px;
+  --shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 16px rgba(0,0,0,.05);
+  --shadow-lg: 0 4px 8px rgba(0,0,0,.08), 0 12px 40px rgba(0,0,0,.1);
+  --font: 'DM Sans', sans-serif;
+  --serif: 'DM Serif Display', serif;
+  --transition: .22s cubic-bezier(.4,0,.2,1);
+}
+[data-theme="dark"] {
+  --bg: #131210;
+  --bg2: #1c1a17;
+  --bg3: #252320;
+  --surface: #1e1c19;
+  --surface2: #252320;
+  --border: #302e2a;
+  --border2: #3d3a35;
+  --text: #f0ede8;
+  --text2: #a8a49e;
+  --text3: #706c66;
+  --accent: #3db87a;
+  --accent2: #52c98a;
+  --accent-bg: #0f2b1e;
+  --math: #7b82ff;
+  --math-bg: #12143a;
+  --rw: #e060a8;
+  --rw-bg: #2a0f20;
+  --rest-bg: #201c14;
+  --rest: #c0a870;
+  --test-bg: #1e1400;
+  --test: #e8a040;
+  --eval-bg: #1e0800;
+  --eval: #ff7055;
+  --exam-bg: #1a4a35;
+  --exam: #7effc0;
+  --done-bg: #0d2018;
+  --done-text: #52c98a;
+  --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.25);
+  --shadow-lg: 0 4px 8px rgba(0,0,0,.4), 0 12px 40px rgba(0,0,0,.4);
+}
+
+/* ──────────────────────────────────────────
+   RESET & BASE
+────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;min-height:100vh;transition:background var(--transition),color var(--transition)}
+button{font-family:var(--font);cursor:pointer;border:none;background:none}
+input,textarea,select{font-family:var(--font)}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+/* ──────────────────────────────────────────
+   LAYOUT SHELL
+────────────────────────────────────────── */
+.shell{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* ──────────────────────────────────────────
+   HEADER
+────────────────────────────────────────── */
+.header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);background:rgba(255,255,255,.92)}
+[data-theme="dark"] .header{background:rgba(30,28,25,.92)}
+.header-inner{display:flex;align-items:center;gap:14px;padding:14px 0;flex-wrap:wrap}
+.header-brand{display:flex;align-items:baseline;gap:10px;flex:1;min-width:200px}
+.brand-title{font-family:var(--serif);font-size:22px;color:var(--text);letter-spacing:-.3px}
+.brand-sub{font-size:12px;color:var(--text3);font-weight:300}
+.header-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.progress-pill{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border);border-radius:30px;padding:6px 14px;font-size:12px;color:var(--text2)}
+.progress-bar-wrap{width:80px;height:5px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.progress-bar{height:100%;background:var(--accent);border-radius:3px;transition:width .5s ease}
+.progress-pct{font-weight:600;color:var(--accent);min-width:32px}
+.icon-btn{width:36px;height:36px;border-radius:8px;background:var(--bg2);border:1px solid var(--border);color:var(--text2);display:flex;align-items:center;justify-content:center;transition:all var(--transition);font-size:16px}
+.icon-btn:hover{background:var(--bg3);color:var(--text);transform:scale(1.05)}
+.add-btn{display:flex;align-items:center;gap:6px;padding:8px 16px;background:var(--accent);color:#fff;border-radius:8px;font-size:13px;font-weight:500;transition:all var(--transition)}
+.add-btn:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 4px 12px rgba(26,107,74,.3)}
+
+/* ──────────────────────────────────────────
+   FILTER BAR
+────────────────────────────────────────── */
+.filter-bar{background:var(--surface2);border-bottom:1px solid var(--border);padding:12px 0;overflow-x:auto}
+.filter-inner{display:flex;gap:6px;align-items:center;flex-wrap:nowrap;white-space:nowrap}
+.filter-section{display:flex;gap:4px;align-items:center}
+.filter-divider{width:1px;height:22px;background:var(--border);margin:0 6px;flex-shrink:0}
+.filter-btn{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:500;border:1px solid var(--border);background:var(--surface);color:var(--text2);transition:all var(--transition);flex-shrink:0}
+.filter-btn:hover{background:var(--bg2);color:var(--text)}
+.filter-btn.active{background:var(--text);color:var(--bg);border-color:var(--text)}
+.filter-btn.active-math{background:var(--math-bg);color:var(--math);border-color:var(--math)}
+.filter-btn.active-rw{background:var(--rw-bg);color:var(--rw);border-color:var(--rw)}
+.filter-btn.active-day{background:var(--accent-bg);color:var(--accent);border-color:var(--accent)}
+
+/* ──────────────────────────────────────────
+   VIEW TOGGLE
+────────────────────────────────────────── */
+.view-toggle{display:flex;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--bg2)}
+.view-btn{padding:5px 12px;font-size:12px;font-weight:500;color:var(--text2);transition:all var(--transition)}
+.view-btn.active{background:var(--text);color:var(--bg)}
+.view-btn:hover:not(.active){background:var(--bg3)}
+
+/* ──────────────────────────────────────────
+   MAIN CONTENT
+────────────────────────────────────────── */
+.main{padding:24px 0 60px}
+
+/* ──────────────────────────────────────────
+   PHASE HEADER
+────────────────────────────────────────── */
+.phase-header{margin:28px 0 14px;display:flex;align-items:center;gap:12px}
+.phase-dot{width:10px;height:10px;border-radius:50%}
+.ph1 .phase-dot{background:#1a6b4a}.ph2 .phase-dot{background:#3b3fbf}
+.ph3 .phase-dot{background:#185FA5}.ph4 .phase-dot{background:#c07010}
+.phase-label{font-family:var(--serif);font-size:17px;color:var(--text)}
+.phase-sub{font-size:12px;color:var(--text3);margin-left:auto}
+.phase-divider{flex:1;height:1px;background:var(--border);margin:0 10px}
+
+/* ──────────────────────────────────────────
+   WEEK BLOCK
+────────────────────────────────────────── */
+.week-block{margin-bottom:8px}
+.week-label{font-size:11px;font-weight:600;color:var(--text3);letter-spacing:.07em;text-transform:uppercase;margin:14px 0 6px 2px}
+
+/* ──────────────────────────────────────────
+   ITEM CARD
+────────────────────────────────────────── */
+.item-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:6px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;transition:all var(--transition);position:relative;overflow:hidden}
+.item-card:hover{border-color:var(--border2);box-shadow:var(--shadow);transform:translateY(-1px)}
+.item-card.done{opacity:.6}
+.item-card.done .item-name{text-decoration:line-through;color:var(--text3)}
+.item-card.done{background:var(--done-bg)}
+.item-card.rest-card{background:var(--rest-bg);border-color:transparent}
+.item-card.exam-card{background:var(--exam-bg);border-color:var(--accent)}
+.item-card.exam-card .item-name,.item-card.exam-card .item-cat,.item-card.exam-card .item-note{color:var(--exam)}
+.item-card.test-card{background:var(--test-bg)}
+.item-card.eval-card{background:var(--eval-bg);border-left:3px solid var(--eval)}
+
+.check-area{padding-top:2px}
+.check-box{width:20px;height:20px;border-radius:5px;border:1.5px solid var(--border2);background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--transition);flex-shrink:0}
+.check-box:hover{border-color:var(--accent);background:var(--accent-bg)}
+.check-box.checked{background:var(--accent);border-color:var(--accent)}
+.check-box.checked::after{content:'✓';font-size:12px;color:#fff;font-weight:700}
+
+.item-body{min-width:0}
+.item-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.item-cat-pill{font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;flex-shrink:0;letter-spacing:.04em}
+.pill-math{background:var(--math-bg);color:var(--math)}
+.pill-rw{background:var(--rw-bg);color:var(--rw)}
+.pill-practice{background:var(--accent-bg);color:var(--accent)}
+.pill-rest{background:var(--rest-bg);color:var(--rest)}
+.pill-test{background:var(--test-bg);color:var(--test)}
+.pill-eval{background:var(--eval-bg);color:var(--eval)}
+.pill-exam{background:rgba(255,255,255,.2);color:var(--exam)}
+.item-name{font-size:14px;font-weight:500;color:var(--text);line-height:1.4}
+.item-note{font-size:12px;color:var(--text3);margin-top:3px;font-style:italic}
+.item-qty{font-size:11px;color:var(--accent);font-weight:600;margin-top:4px}
+
+.item-meta{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;min-width:110px}
+.item-date-wrap{display:flex;align-items:center;gap:4px}
+.item-date{font-size:11px;color:var(--text3);background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:3px 8px;cursor:pointer;transition:all var(--transition)}
+.item-date:hover{border-color:var(--accent);color:var(--accent)}
+.item-date:focus{outline:none;border-color:var(--accent);color:var(--accent)}
+.day-badge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:8px;letter-spacing:.04em}
+.badge-seg,.badge-ter,.badge-qua,.badge-qui,.badge-sex{background:var(--bg2);color:var(--text2)}
+.badge-sáb{background:var(--rest-bg);color:var(--rest)}
+.badge-dom{background:var(--accent-bg);color:var(--accent)}
+.status-select{font-size:11px;padding:3px 8px;border:1px solid var(--border);border-radius:5px;background:var(--bg2);color:var(--text2);cursor:pointer;transition:all var(--transition)}
+.status-select:focus{outline:none;border-color:var(--accent)}
+.item-actions{display:flex;gap:4px}
+.del-btn{width:26px;height:26px;border-radius:5px;color:var(--text3);font-size:14px;display:flex;align-items:center;justify-content:center;transition:all var(--transition);opacity:0}
+.item-card:hover .del-btn{opacity:1}
+.del-btn:hover{background:var(--eval-bg);color:var(--eval)}
+
+/* ──────────────────────────────────────────
+   CALENDAR VIEW
+────────────────────────────────────────── */
+.cal-view{display:none}
+.cal-view.active{display:block}
+.cal-nav{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.cal-nav-btn{width:32px;height:32px;border-radius:8px;background:var(--bg2);border:1px solid var(--border);color:var(--text2);font-size:18px;display:flex;align-items:center;justify-content:center;transition:all var(--transition)}
+.cal-nav-btn:hover{background:var(--bg3);color:var(--text)}
+.cal-month-label{font-family:var(--serif);font-size:18px;color:var(--text);flex:1}
+.cal-grid-head{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:4px}
+.cal-day-head{text-align:center;font-size:11px;font-weight:600;color:var(--text3);letter-spacing:.06em;padding:6px 0}
+.cal-day-head.sat{color:var(--rest)}
+.cal-day-head.sun{color:var(--accent)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-cell{min-height:90px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:6px;position:relative;transition:all var(--transition);overflow:hidden}
+.cal-cell:hover{border-color:var(--border2);box-shadow:var(--shadow)}
+.cal-cell.empty{background:var(--bg2);border-color:transparent}
+.cal-cell.today{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-bg)}
+.cal-cell.sat-cell{background:var(--rest-bg)}
+.cal-cell.sun-cell{background:var(--surface);border-color:var(--accent)}
+.cal-date-num{font-size:11px;font-weight:600;color:var(--text3);margin-bottom:4px}
+.cal-item-dot{font-size:9px;line-height:1.3;color:var(--text2);background:var(--bg2);border-radius:3px;padding:2px 4px;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;transition:background var(--transition)}
+.cal-item-dot.done-dot{text-decoration:line-through;opacity:.5}
+.cal-item-dot:hover{background:var(--border)}
+.cal-item-dot.math-dot{background:var(--math-bg);color:var(--math)}
+.cal-item-dot.rw-dot{background:var(--rw-bg);color:var(--rw)}
+.cal-item-dot.rest-dot{background:var(--rest-bg);color:var(--rest)}
+.cal-item-dot.test-dot{background:var(--test-bg);color:var(--test)}
+.cal-item-dot.eval-dot{background:var(--eval-bg);color:var(--eval)}
+.cal-item-dot.exam-dot{background:var(--exam-bg);color:#fff}
+
+/* ──────────────────────────────────────────
+   MODAL
+────────────────────────────────────────── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px);padding:20px}
+.modal-overlay.open{display:flex;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{background:var(--surface);border-radius:var(--radius);padding:28px;width:100%;max-width:480px;box-shadow:var(--shadow-lg);animation:slideUp .25s ease}
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal h3{font-family:var(--serif);font-size:20px;margin-bottom:20px;color:var(--text)}
+.modal-field{margin-bottom:14px}
+.modal-label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:5px;letter-spacing:.04em;text-transform:uppercase}
+.modal-input{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg2);color:var(--text);font-size:13px;transition:all var(--transition)}
+.modal-input:focus{outline:none;border-color:var(--accent);background:var(--surface)}
+.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:20px}
+.modal-cancel{padding:9px 18px;border-radius:8px;background:var(--bg2);border:1px solid var(--border);color:var(--text2);font-size:13px;transition:all var(--transition)}
+.modal-cancel:hover{background:var(--bg3)}
+.modal-save{padding:9px 18px;border-radius:8px;background:var(--accent);color:#fff;font-size:13px;font-weight:500;transition:all var(--transition)}
+.modal-save:hover{background:var(--accent2);transform:translateY(-1px)}
+.modal-del-text{font-size:14px;color:var(--text2);margin-bottom:20px;line-height:1.6}
+
+/* ──────────────────────────────────────────
+   EMPTY STATE
+────────────────────────────────────────── */
+.empty-state{text-align:center;padding:60px 20px;color:var(--text3)}
+.empty-state .icon{font-size:40px;margin-bottom:12px}
+.empty-state p{font-size:14px}
+
+/* ──────────────────────────────────────────
+   RESPONSIVE
+────────────────────────────────────────── */
+@media(max-width:680px){
+  .item-card{grid-template-columns:auto 1fr;grid-template-rows:auto auto}
+  .item-meta{flex-direction:row;align-items:center;grid-column:1/-1;flex-wrap:wrap;gap:5px;justify-content:flex-start;min-width:unset}
+  .del-btn{opacity:1}
+  .cal-grid,.cal-grid-head{grid-template-columns:repeat(7,1fr)}
+  .cal-cell{min-height:60px;padding:4px}
+  .cal-item-dot{display:none}
+  .cal-item-count{font-size:9px;color:var(--text3);text-align:center}
+  .brand-title{font-size:18px}
+  .header-inner{gap:8px}
+}
+@media(max-width:420px){
+  .cal-grid,.cal-grid-head{grid-template-columns:repeat(7,1fr)}
+  .cal-cell{min-height:44px}
+  .cal-date-num{font-size:9px}
+}
+
+/* ──────────────────────────────────────────
+   TOAST
+────────────────────────────────────────── */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--text);color:var(--bg);padding:10px 18px;border-radius:8px;font-size:13px;z-index:2000;transform:translateY(80px);opacity:0;transition:all .3s ease;pointer-events:none}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* ──────────────────────────────────────────
+   SCROLLING LIST ANIMATION
+────────────────────────────────────────── */
+.item-card{animation:cardIn .3s ease backwards}
+@keyframes cardIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ──────────────────────────────────────────
+   DONE STAMP ANIMATION
+────────────────────────────────────────── */
+.done-flash{animation:doneFlash .4s ease}
+@keyframes doneFlash{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
+</style>
+</head>
+<body>
+
+<!-- ──── HEADER ──── -->
+<header class="header">
+  <div class="shell">
+    <div class="header-inner">
+      <div class="header-brand">
+        <span class="brand-title">SAT · Karina</span>
+        <span class="brand-sub">Meta 1520 · 12 set 2026</span>
+      </div>
+      <div class="header-controls">
+        <div class="progress-pill">
+          <div class="progress-bar-wrap">
+            <div class="progress-bar" id="progressBar" style="width:0%"></div>
+          </div>
+          <span class="progress-pct" id="progressPct">0%</span>
+          <span id="progressText" style="color:var(--text3)">concluído</span>
+        </div>
+        <div class="view-toggle">
+          <button class="view-btn active" id="btnList" onclick="setView('list')">☰ Lista</button>
+          <button class="view-btn" id="btnCal" onclick="setView('cal')">📅 Calendário</button>
+        </div>
+        <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="Alternar tema">🌙</button>
+        <button class="add-btn" onclick="openAddModal()">+ Adicionar</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ──── FILTER BAR ──── -->
+<div class="filter-bar">
+  <div class="shell">
+    <div class="filter-inner">
+      <div class="filter-section">
+        <button class="filter-btn active" id="f-all" onclick="setFilter('all',this)">Tudo</button>
+        <button class="filter-btn" id="f-math" onclick="setFilter('math',this)">Math</button>
+        <button class="filter-btn" id="f-rw" onclick="setFilter('rw',this)">R&amp;W</button>
+      </div>
+      <div class="filter-divider"></div>
+      <div class="filter-section" id="dayFilters">
+        <button class="filter-btn" onclick="setDayFilter('Seg',this)">Seg</button>
+        <button class="filter-btn" onclick="setDayFilter('Ter',this)">Ter</button>
+        <button class="filter-btn" onclick="setDayFilter('Qua',this)">Qua</button>
+        <button class="filter-btn" onclick="setDayFilter('Qui',this)">Qui</button>
+        <button class="filter-btn" onclick="setDayFilter('Sex',this)">Sex</button>
+        <button class="filter-btn" onclick="setDayFilter('Sáb',this)" style="color:var(--rest)">🌿 Sáb</button>
+        <button class="filter-btn" onclick="setDayFilter('Dom',this)" style="color:var(--accent)">📚 Dom</button>
+      </div>
+      <div class="filter-divider"></div>
+      <div class="filter-section">
+        <button class="filter-btn" onclick="setStatusFilter('pending',this)">Pendentes</button>
+        <button class="filter-btn" onclick="setStatusFilter('done',this)">Concluídos</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ──── MAIN ──── -->
+<main class="main">
+  <div class="shell">
+    <!-- LIST VIEW -->
+    <div id="listView"></div>
+    <!-- CAL VIEW -->
+    <div id="calView" class="cal-view"></div>
+  </div>
+</main>
+
+<!-- ──── MODAL: ADD ──── -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal">
+    <h3>Adicionar item</h3>
+    <div class="modal-field">
+      <label class="modal-label">Nome / Tópico</label>
+      <input class="modal-input" id="addName" type="text" placeholder="Ex: Command of Evidence — revisão">
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Categoria</label>
+      <select class="modal-input" id="addType">
+        <option value="rw">R&amp;W — Leitura e Escrita</option>
+        <option value="math">Math — Matemática</option>
+        <option value="practice">Prática / Simulado</option>
+        <option value="self-eval">Autoavaliação</option>
+        <option value="rest">Descanso</option>
+      </select>
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Subcategoria (opcional)</label>
+      <input class="modal-input" id="addCat" type="text" placeholder="Ex: Math · Algebra">
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Dia da semana</label>
+      <select class="modal-input" id="addDay">
+        <option>Seg</option><option>Ter</option><option>Qua</option>
+        <option>Qui</option><option>Sex</option>
+        <option>Sáb — Dia Leve</option><option>Dom</option>
+      </select>
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Data</label>
+      <input class="modal-input" id="addDate" type="date" min="2026-06-01" max="2026-09-12">
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Questões (ex: 8 q)</label>
+      <input class="modal-input" id="addQty" type="text" placeholder="—">
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Nota / Dica</label>
+      <input class="modal-input" id="addNote" type="text" placeholder="Opcional">
+    </div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeAddModal()">Cancelar</button>
+      <button class="modal-save" onclick="saveNewItem()">Adicionar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ──── MODAL: DELETE ──── -->
+<div class="modal-overlay" id="delModal">
+  <div class="modal">
+    <h3>Remover item</h3>
+    <p class="modal-del-text">Tem certeza que quer remover <strong id="delItemName"></strong>? Essa ação não pode ser desfeita.</p>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeDelModal()">Cancelar</button>
+      <button class="modal-save" style="background:#c0391b" onclick="confirmDelete()">Remover</button>
+    </div>
+  </div>
+</div>
+
+<!-- ──── TOAST ──── -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ────────────────────────────────────────
+// DATA
+// ────────────────────────────────────────
+const RAW = [
+["2026-06-01","Seg","rw","R&W · Information & Ideas","Command of Evidence — técnica âncora dupla","8 q","Foco: identificar a evidência principal antes de ler as opções"],
+["2026-06-02","Ter","math","Math · Algebra","Linear equations 1 variável — word problems","10 q","Traduzir enunciado → equação antes de resolver"],
+["2026-06-03","Qua","rw","R&W · Standard English Conventions","Boundaries — vírgulas, ponto e vírgula","8 q","Regra base: independente + independente = precisa de separador forte"],
+["2026-06-04","Qui","math","Math · Algebra","Linear equations 1 variável — equações complexas","10 q","Atenção a variáveis em denominador e frações"],
+["2026-06-05","Sex","rw","R&W · Misto","Command of Evidence + Boundaries — misto","12 q","Erro log: anotar padrão de cada erro"],
+["2026-06-06","Sáb","rest","Descanso","Dia leve — revisão mental do error log","—","Nada de questões novas. Rever anotações da semana."],
+["2026-06-07","Dom","practice","Prática","Mini-módulo R&W cronometrado (27 q)","27 q","Treinar ordem: 15→27 primeiro, depois 1→8"],
+["2026-06-08","Seg","rw","R&W · Standard English Conventions","Form, Structure & Sense — introdução","8 q","Foco em verbo+sujeito, pronomes, paralelismo"],
+["2026-06-09","Ter","math","Math · Algebra","Systems of 2 linear equations — substituição/eliminação","8 q","Identificar o método mais rápido por tipo de questão"],
+["2026-06-10","Qua","rw","R&W · Information & Ideas","Command of Evidence — revisão de erros semana 1","8 q","Refazer as questões erradas com nova estratégia"],
+["2026-06-11","Qui","math","Math · Algebra","Linear equations 2 variáveis — interpretar graficamente","8 q","Usar Desmos para visualizar a solução graficamente"],
+["2026-06-12","Sex","rw","R&W · Misto","Form/Structure/Sense + Boundaries — misto","12 q","Erro log: classificar cada erro"],
+["2026-06-13","Sáb","rest","Descanso","Dia leve — descanso total","—","Sem SAT. Descanso cognitivo real."],
+["2026-06-14","Dom","practice","Prática","Mini-módulo Math cronometrado (22 q)","22 q","Pular as 2 mais difíceis primeiro, voltar depois"],
+["2026-06-15","Seg","rw","R&W · Information & Ideas","Inferences — lógica inferencial","8 q","O que o autor IMPLICA vs. o que ele DIZ"],
+["2026-06-16","Ter","math","Math · Algebra","Systems linear — word problems aplicados","8 q","Atenção: montar o sistema certo antes de resolver"],
+["2026-06-17","Qua","rw","R&W · Standard English Conventions","Boundaries — dois pontos, travessão, ponto final","8 q","Consolidação das regras da semana 1"],
+["2026-06-18","Qui","math","Math · Algebra","Linear functions — slope, intercept, interpretação","8 q","y = mx + b: o que cada parte significa no contexto"],
+["2026-06-19","Sex","rw","R&W · Misto","Misto Bloco 1 — revisar todos os erros","10 q","Preparação para autoavaliação"],
+["2026-06-20","Sáb","rest","Descanso","Dia leve","—","Descanso antes da autoavaliação"],
+["2026-06-21","Dom","self-eval","🔴 Autoavaliação","Bloco 1: Command of Evidence + Linear eq + Boundaries","30 q","Meta: Command ≥70% · Linear eq ≥70% · Boundaries ≥70%"],
+["2026-06-22","Seg","rw","R&W · Standard English Conventions","Form/Structure + reforço pontos fracos Bloco 1","10 q","Focar nos tipos de erro da autoavaliação"],
+["2026-06-23","Ter","math","Math · Algebra","Algebra misto — reforço pontos fracos Bloco 1","10 q","Priorizar os tópicos abaixo de 70%"],
+["2026-06-24","Qua","rw","R&W · Information & Ideas","Command of Evidence — consolidação avançada","8 q","Questões de dificuldade média-alta"],
+["2026-06-25","Qui","math","Math · Algebra","Misto Algebra — sistemas + linear eq integrado","10 q","Combinar os tópicos como aparece no SAT real"],
+["2026-06-26","Sex","rw","R&W · Misto","Revisão geral Fase 1 + error log","8 q","Última sessão antes do simulado"],
+["2026-06-27","Sáb","rest","Descanso","Dia leve — preparação mental","—","Leve, sem questões. Dormir cedo."],
+["2026-06-28","Dom","test","🧪 Simulado Completo","Simulado Fase 1 — meta ≥1200 (R&W≥610, M≥620)","Prova completa","Aplicar estratégia completa. Revisar todo o erro log depois."],
+["2026-06-29","Seg","rw","R&W · Craft & Structure","Inferences — aprofundamento e padrões","8 q","Foco em 'which choice best supports...'"],
+["2026-06-30","Ter","math","Math · Advanced Math","Nonlinear functions — parábolas, quadráticas","8 q","Vertex form vs standard form. Desmos como apoio."],
+["2026-07-01","Qua","rw","R&W · Craft & Structure","Text Structure & Purpose — introdução","8 q","O que o parágrafo FAZ no texto"],
+["2026-07-02","Qui","math","Math · Problem-Solving","Ratios, rates, proportional relationships","8 q","Conversão de unidades + raciocínio proporcional"],
+["2026-07-03","Sex","rw","R&W · Misto","Inferences + Text Structure — misto","12 q","Error log: classificar cada erro"],
+["2026-07-04","Sáb","rest","Descanso","Dia leve","—","Descanso."],
+["2026-07-05","Dom","practice","Prática","Mini-módulo R&W + Math misto (30 q)","30 q","Aplicar estratégia de tempo. Não travar."],
+["2026-07-06","Seg","rw","R&W · Information & Ideas","Cross-Text Connections — introdução","6 q","Comparar dois textos: concordâncias e divergências"],
+["2026-07-07","Ter","math","Math · Advanced Math","Nonlinear functions — funções exponenciais","8 q","Crescimento/decaimento exponencial. Usar Desmos."],
+["2026-07-08","Qua","rw","R&W · Information & Ideas","Inferences — revisão de erros semana 5","8 q","Refazer questões erradas com nova abordagem"],
+["2026-07-09","Qui","math","Math · Problem-Solving","Data Analysis — vídeos James (média, mediana, gráficos)","6 q","Identificar média/mediana só de olhar o gráfico"],
+["2026-07-10","Sex","rw","R&W · Misto","Misto Bloco 3 — revisão geral","12 q","Preparação para autoavaliação"],
+["2026-07-11","Sáb","rest","Descanso","Dia leve","—","Descanso cognitivo."],
+["2026-07-12","Dom","practice","Prática","Mini-módulo Math cronometrado (22 q)","22 q","Treinar ritmo e tempo"],
+["2026-07-13","Seg","rw","R&W · Craft & Structure","Text Structure & Purpose — consolidação","8 q","Questões de dificuldade média-alta"],
+["2026-07-14","Ter","math","Math · Problem-Solving","Ratios & Rates — percentagens aplicadas","8 q","Percent change, percent of, percent increase/decrease"],
+["2026-07-15","Qua","rw","R&W · Misto","Misto R&W — pontos fracos Bloco 3","10 q","Baseado nos erros do error log"],
+["2026-07-16","Qui","math","Math · Misto","Nonlinear + Data Analysis — misto","8 q","Integrar os dois tópicos"],
+["2026-07-17","Sex","rw","R&W · Misto","Revisão error log semanas 6+7","8 q","Análise qualitativa: há padrão nos erros?"],
+["2026-07-18","Sáb","rest","Descanso","Dia leve","—","Descanso antes da autoavaliação"],
+["2026-07-19","Dom","self-eval","🔴 Autoavaliação","Bloco 3: Inferences + Nonlinear + Ratios","30 q","Meta: Inferences ≥70% · Nonlinear ≥70% · Ratios ≥70%"],
+["2026-07-20","Seg","rw","R&W · Misto","Reforço pontos fracos Bloco 3 — R&W","10 q","Focar no que ficou abaixo de 70%"],
+["2026-07-21","Ter","math","Math · Misto","Reforço pontos fracos Bloco 3 — Math","10 q","Priorizar o que ficou abaixo de 70%"],
+["2026-07-22","Qua","rw","R&W · Misto","Misto Fase 2 — todos os tópicos R&W","10 q","Revisão integrada das Fases 1 e 2"],
+["2026-07-23","Qui","math","Math · Misto","Misto Fase 2 — Algebra + Advanced Math","10 q","Revisão integrada"],
+["2026-07-24","Sex","rw","R&W · Misto","Revisão geral Fases 1 e 2","8 q","Última sessão antes do simulado"],
+["2026-07-25","Sáb","rest","Descanso","Dia leve — preparação mental","—","Leve. Dormir cedo."],
+["2026-07-26","Dom","test","🧪 Simulado Completo","Simulado Fase 2 — meta ≥1300 (R&W≥660, M≥670)","Prova completa","Aplicar estratégia completa. Analisar modulação de tempo."],
+["2026-07-27","Seg","math","Math · Advanced Math","Nonlinear systems — sistemas não-lineares hard","8 q","Combinação quadrática + linear. Usar Desmos."],
+["2026-07-28","Ter","rw","R&W · Craft & Structure","Words in Context — manutenção da força","6 q","Sessão leve: tópico forte, só manutenção"],
+["2026-07-29","Qua","math","Math · Geometry","Geometry — área, volume, círculos","8 q","Fórmulas essenciais. Saber de cabeça."],
+["2026-07-30","Qui","rw","R&W · Craft & Structure","Craft & Structure — misto geral","8 q","Combinar Text Structure, Words in Context, Cross-text"],
+["2026-07-31","Sex","math","Math · Problem-Solving","Data Analysis — vídeos James (distribuições, boxplots)","6 q","Saber ler boxplot e identificar outlier"],
+["2026-08-01","Sáb","rest","Descanso","Dia leve","—","Descanso."],
+["2026-08-02","Dom","practice","Prática","Estratégia — módulo R&W completo (27 q)","27 q","Treinar a ordem: 15→27, depois 1→8, depois 9→14"],
+["2026-08-03","Seg","math","Math · Geometry","Trigonometry — right triangles, sin/cos/tan","7 q","SOHCAHTOA. Saber as relações de cor."],
+["2026-08-04","Ter","rw","R&W · Information & Ideas","Command of Evidence — misto avançado","8 q","Questões de alto nível. Foco total."],
+["2026-08-05","Qua","math","Math · Advanced Math","Nonlinear functions hard — questões difíceis","8 q","Não usar mais de 2 min por questão"],
+["2026-08-06","Qui","rw","R&W · Standard English Conventions","Form/Structure/Sense — consolidação avançada","8 q","Misto de todos os subtipos"],
+["2026-08-07","Sex","math","Math · Misto","Misto Math Fase 3 — error log semanas 9+10","10 q","Análise profunda dos erros"],
+["2026-08-08","Sáb","rest","Descanso","Dia leve","—","Descanso."],
+["2026-08-09","Dom","self-eval","🔴 Autoavaliação","Bloco 5: Geometry + Advanced Math + Craft & Structure","30 q","Meta: Geometry ≥70% · Advanced ≥75% · Craft & Str ≥75%"],
+["2026-08-10","Seg","rw","R&W · Misto","Pontos fracos Bloco 5 — R&W","8 q","Focar no que ficou abaixo de 75%"],
+["2026-08-11","Ter","math","Math · Misto","Pontos fracos Bloco 5 — Math","8 q","Focar no que ficou abaixo de 75%"],
+["2026-08-12","Qua","rw","R&W · Information & Ideas","Inferences + Command — questões difíceis","8 q","Questões de nível hard do SAT"],
+["2026-08-13","Qui","math","Math · Problem-Solving","Ratios + Data Analysis — James avançado","8 q","Integração em questões complexas"],
+["2026-08-14","Sex","rw","R&W · Misto","Misto Bloco 6 — revisão error log","10 q","Preparação para simulado parcial"],
+["2026-08-15","Sáb","rest","Descanso","Dia leve","—","Descanso antes do simulado parcial."],
+["2026-08-16","Dom","practice","Prática","Simulado parcial — R&W completo (54 q) cronometrado","54 q","Aplicar estratégia de ordem. Medir tempo por módulo."],
+["2026-08-17","Seg","math","Math · Advanced Math","Hard questions — questões 20-22 do módulo","8 q","As mais difíceis. Calma e método."],
+["2026-08-18","Ter","rw","R&W · Misto","Estratégia — treinar ordem das questões","8 q","Simular a ordem exata do dia da prova"],
+["2026-08-19","Qua","math","Math · Misto","Misto geral Math — todos os tópicos","10 q","Revisão integrada completa"],
+["2026-08-20","Qui","rw","R&W · Misto","Misto geral R&W — todos os tópicos","10 q","Revisão integrada completa"],
+["2026-08-21","Sex","self-eval","🔴 Autoavaliação","Bloco 6 — revisão completa + error log","25 q","Análise final da Fase 3"],
+["2026-08-22","Sáb","rest","Descanso","Dia leve","—","Descanso antes do simulado."],
+["2026-08-23","Dom","test","🧪 Simulado Completo","Simulado Fase 3 — meta ≥1400 (R&W≥710, M≥720)","Prova completa","Maior simulado até agora. Aplicar tudo."],
+["2026-08-24","Seg","rw","R&W · Misto","Pontos fracos do simulado Fase 3 — R&W","8 q","Só o que errou no simulado."],
+["2026-08-25","Ter","math","Math · Misto","Pontos fracos do simulado Fase 3 — Math","8 q","Só o que errou no simulado."],
+["2026-08-26","Qua","rw","R&W · Misto","Estratégia ordem das questões — treino final","8 q","Executar 3x a sequência completa sem desviar"],
+["2026-08-27","Qui","math","Math · Advanced Math","Desmos avançado + hard questions finais","8 q","Dominar Desmos para sistemas não-lineares"],
+["2026-08-28","Sex","rw","R&W · Misto","Misto geral — questões difíceis tipo prova real","10 q","Última semana de estudo intenso"],
+["2026-08-29","Sáb","rest","Descanso","Dia leve","—","Descanso antes do simulado final."],
+["2026-08-30","Dom","test","🧪 Simulado Completo","Simulado Fase 4 — meta ≥1450","Prova completa","Analisar cada erro com detalhe máximo."],
+["2026-08-31","Seg","self-eval","🔴 Autoavaliação Final","Avaliação completa — todos os tópicos","40 q","Mapear o que ainda precisa atenção"],
+["2026-09-01","Ter","math","Math · Misto","Revisão leve — só o que persistiu em Math","5 q","Nada novo. Só consolidação."],
+["2026-09-02","Qua","rw","R&W · Misto","Revisão leve — só o que persistiu em R&W","5 q","Nada novo. Só consolidação."],
+["2026-09-03","Qui","practice","Estratégia","Treinar ritmo Desmos + estratégia de prova","15 q","Simular as decisões do dia da prova"],
+["2026-09-04","Sex","math","Math · Misto","Últimas questões tipo prova real","10 q","Encerrar os estudos com confiança"],
+["2026-09-05","Sáb","rest","Descanso","Dia leve — quase lá","—","Descanso total."],
+["2026-09-06","Dom","test","🧪 Simulado Final","Simulado Final — meta ≥1480","Prova completa","Último simulado. Depois: só descanso."],
+["2026-09-07","Seg","rest","Semana da Prova","Revisão mental leve do error log","—","Sem questões. Só reler anotações."],
+["2026-09-08","Ter","rest","Semana da Prova","Rever estratégia de prova (30 min)","—","A ordem das questões. A regra dos 2 min. Desmos."],
+["2026-09-09","Qua","rest","Semana da Prova","Descanso total — sem SAT","—","Sono, alimentação, relaxar."],
+["2026-09-10","Qui","rest","Semana da Prova","Descanso total","—","Mente descansada = performance máxima."],
+["2026-09-11","Sex","rest","Semana da Prova","Véspera — dormir cedo, material pronto","—","Tudo preparado. Confiar no trabalho."],
+["2026-09-12","Sáb","exam","🎯 DIA DA PROVA","SAT — Meta 1520","—","Você está pronta. Accuracy >>> Speed."]
+];
+
+// ────────────────────────────────────────
+// STATE
+// ────────────────────────────────────────
+const LS_KEY = 'karina_sat_v2';
+let items = [];
+let filterCat = 'all';
+let filterDay = null;
+let filterStatus = null;
+let currentView = 'list';
+let calMonth = new Date(2026, 5); // June 2026
+let pendingDeleteId = null;
+let nextId = 1000;
+
+function loadState() {
+  const saved = localStorage.getItem(LS_KEY);
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      items = parsed.items || [];
+      nextId = parsed.nextId || 1000;
+      // Merge any new RAW items not in saved
+      RAW.forEach((r, i) => {
+        const rawId = 'raw_' + i;
+        if (!items.find(it => it.id === rawId)) {
+          items.push(rawFromArray(r, rawId));
+        }
+      });
+    } catch(e) { initFromRaw(); }
+  } else {
+    initFromRaw();
+  }
+  // sort by date
+  items.sort((a,b) => a.date.localeCompare(b.date));
+}
+
+function initFromRaw() {
+  items = RAW.map((r, i) => rawFromArray(r, 'raw_' + i));
+}
+
+function rawFromArray(r, id) {
+  return {
+    id, date: r[0], dow: r[1], type: r[2],
+    cat: r[3], name: r[4], qty: r[5], note: r[6],
+    status: 'pending', done: false
+  };
+}
+
+function saveState() {
+  localStorage.setItem(LS_KEY, JSON.stringify({ items, nextId }));
+  updateProgress();
+}
+
+// ────────────────────────────────────────
+// PROGRESS
+// ────────────────────────────────────────
+function updateProgress() {
+  const studiable = items.filter(it => it.type !== 'rest');
+  const done = studiable.filter(it => it.done);
+  const pct = studiable.length ? Math.round(done.length / studiable.length * 100) : 0;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = pct + '%';
+  document.getElementById('progressText').textContent = `(${done.length}/${studiable.length} itens)`;
+}
+
+// ────────────────────────────────────────
+// FILTERS
+// ────────────────────────────────────────
+function setFilter(cat, btn) {
+  filterCat = cat; filterDay = null; filterStatus = null;
+  document.querySelectorAll('.filter-btn').forEach(b => { b.classList.remove('active','active-math','active-rw','active-day'); });
+  if (cat === 'math') btn.classList.add('active-math');
+  else if (cat === 'rw') btn.classList.add('active-rw');
+  else btn.classList.add('active');
+  render();
+}
+
+function setDayFilter(day, btn) {
+  if (filterDay === day) { filterDay = null; btn.classList.remove('active-day'); }
+  else {
+    filterDay = day;
+    document.querySelectorAll('#dayFilters .filter-btn').forEach(b => b.classList.remove('active-day'));
+    btn.classList.add('active-day');
+  }
+  render();
+}
+
+function setStatusFilter(s, btn) {
+  if (filterStatus === s) { filterStatus = null; btn.classList.remove('active'); }
+  else {
+    filterStatus = s;
+    document.querySelectorAll('.filter-section:last-child .filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  render();
+}
+
+function matchesFilter(it) {
+  if (filterCat === 'math' && !['math'].includes(it.type) && !it.cat.toLowerCase().includes('math')) return false;
+  if (filterCat === 'rw' && !['rw'].includes(it.type) && !it.cat.toLowerCase().includes('r&w')) return false;
+  if (filterDay && it.dow !== filterDay) return false;
+  if (filterStatus === 'pending' && it.done) return false;
+  if (filterStatus === 'done' && !it.done) return false;
+  return true;
+}
+
+// ────────────────────────────────────────
+// PHASES
+// ────────────────────────────────────────
+const PHASES = [
+  { label: 'Fase 1 — Fundação', sub: '1 jun → 28 jun · Álgebra base + Command of Evidence + Boundaries', cls: 'ph1', start: '2026-06-01', end: '2026-06-28' },
+  { label: 'Fase 2 — Consolidação', sub: '29 jun → 26 jul · Inferences + Nonlinear + Ratios', cls: 'ph2', start: '2026-06-29', end: '2026-07-26' },
+  { label: 'Fase 3 — Aperfeiçoamento', sub: '27 jul → 23 ago · Geometry + Advanced Math + Craft & Structure', cls: 'ph3', start: '2026-07-27', end: '2026-08-23' },
+  { label: 'Fase 4 — Afinação Final', sub: '24 ago → 9 set · Revisão + Simulados + Estratégia de prova', cls: 'ph4', start: '2026-08-24', end: '2026-09-12' },
+];
+
+function getPhase(date) {
+  return PHASES.find(p => date >= p.start && date <= p.end);
+}
+
+// ────────────────────────────────────────
+// RENDER LIST VIEW
+// ────────────────────────────────────────
+function render() {
+  if (currentView === 'cal') { renderCal(); return; }
+
+  const filtered = items.filter(matchesFilter);
+
+  if (!filtered.length) {
+    document.getElementById('listView').innerHTML = '<div class="empty-state"><div class="icon">🔍</div><p>Nenhum item com esses filtros.</p></div>';
+    return;
+  }
+
+  // Group by phase then by week
+  let html = '';
+  let lastPhase = null;
+  let lastWeek = null;
+
+  filtered.forEach((it, idx) => {
+    const phase = getPhase(it.date);
+    const weekStart = getWeekStart(it.date);
+
+    if (phase && (!lastPhase || phase.label !== lastPhase.label)) {
+      html += `<div class="phase-header ${phase.cls}">
+        <div class="phase-dot"></div>
+        <span class="phase-label">${phase.label}</span>
+        <div class="phase-divider"></div>
+        <span class="phase-sub">${phase.sub}</span>
+      </div>`;
+      lastPhase = phase;
+      lastWeek = null;
+    }
+
+    if (weekStart !== lastWeek) {
+      if (lastWeek !== null) html += '</div>';
+      const wd = formatWeekLabel(weekStart);
+      html += `<div class="week-block"><div class="week-label">${wd}</div>`;
+      lastWeek = weekStart;
+    }
+
+    html += renderCard(it, idx);
+  });
+  if (lastWeek !== null) html += '</div>';
+
+  document.getElementById('listView').innerHTML = html;
+  // stagger animations
+  document.querySelectorAll('.item-card').forEach((c, i) => {
+    c.style.animationDelay = Math.min(i * 0.02, 0.4) + 's';
+  });
+}
+
+function renderCard(it) {
+  const typeClass = {
+    'rw': 'rw-card', 'math': 'math-card', 'rest': 'rest-card',
+    'test': 'test-card', 'self-eval': 'eval-card',
+    'exam': 'exam-card', 'practice': ''
+  }[it.type] || '';
+
+  const pillClass = {
+    'rw': 'pill-rw', 'math': 'pill-math', 'rest': 'pill-rest',
+    'test': 'pill-test', 'self-eval': 'pill-eval',
+    'exam': 'pill-exam', 'practice': 'pill-practice'
+  }[it.type] || 'pill-practice';
+
+  const pillLabel = {
+    'rw': 'R&W', 'math': 'Math', 'rest': '🌿 Sáb Livre',
+    'test': '🧪 Simulado', 'self-eval': '🔴 Autoaval',
+    'exam': '🎯 Prova', 'practice': '📚 Dom Prática'
+  }[it.type] || it.type;
+
+  const catDisplay = it.cat !== 'Descanso' && it.cat !== 'Prática' && it.cat !== 'Estratégia' ? it.cat : '';
+
+  const fmtDate = formatDate(it.date);
+
+  const statusOpts = ['pending','in-progress','done'].map(s =>
+    `<option value="${s}" ${it.status===s?'selected':''}>${
+      s==='pending'?'⚪ Não iniciado':s==='in-progress'?'🟡 Em andamento':'✅ Concluído'
+    }</option>`
+  ).join('');
+
+  return `<div class="item-card ${typeClass} ${it.done?'done':''}" id="card_${it.id}">
+    <div class="check-area">
+      <div class="check-box ${it.done?'checked':''}" onclick="toggleDone('${it.id}')" title="Marcar como concluído"></div>
+    </div>
+    <div class="item-body">
+      <div class="item-top">
+        <span class="item-cat-pill ${pillClass}">${pillLabel}</span>
+        ${catDisplay ? `<span style="font-size:11px;color:var(--text3)">${catDisplay}</span>` : ''}
+      </div>
+      <div class="item-name">${it.name}</div>
+      ${it.note && it.note !== '—' ? `<div class="item-note">${it.note}</div>` : ''}
+      ${it.qty && it.qty !== '—' ? `<div class="item-qty">${it.qty}</div>` : ''}
+    </div>
+    <div class="item-meta">
+      <div style="display:flex;gap:5px;align-items:center;flex-wrap:wrap;justify-content:flex-end">
+        <span class="day-badge badge-${it.dow.toLowerCase().replace('á','a')}">${it.dow}</span>
+        <input class="item-date" type="date" value="${it.date}" onchange="updateDate('${it.id}',this.value)" title="Clique para alterar a data">
+      </div>
+      <select class="status-select" onchange="updateStatus('${it.id}',this.value)">${statusOpts}</select>
+      <div class="item-actions">
+        <button class="del-btn" onclick="openDelModal('${it.id}')" title="Remover">✕</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ────────────────────────────────────────
+// ITEM ACTIONS
+// ────────────────────────────────────────
+function toggleDone(id) {
+  const it = items.find(i => i.id === id);
+  if (!it) return;
+  it.done = !it.done;
+  it.status = it.done ? 'done' : 'pending';
+  saveState();
+  const card = document.getElementById('card_' + id);
+  if (card) {
+    card.classList.toggle('done', it.done);
+    card.classList.add('done-flash');
+    setTimeout(() => card.classList.remove('done-flash'), 400);
+    const cb = card.querySelector('.check-box');
+    if (cb) cb.classList.toggle('checked', it.done);
+    const nameEl = card.querySelector('.item-name');
+    if (nameEl) nameEl.style.textDecoration = it.done ? 'line-through' : '';
+    const sel = card.querySelector('.status-select');
+    if (sel) sel.value = it.status;
+  }
+  showToast(it.done ? '✓ Marcado como concluído!' : 'Desmarcado');
+}
+
+function updateDate(id, val) {
+  const it = items.find(i => i.id === id);
+  if (it && val) { it.date = val; saveState(); showToast('Data atualizada'); }
+}
+
+function updateStatus(id, val) {
+  const it = items.find(i => i.id === id);
+  if (!it) return;
+  it.status = val;
+  it.done = val === 'done';
+  saveState();
+  const card = document.getElementById('card_' + id);
+  if (card) {
+    card.classList.toggle('done', it.done);
+    const cb = card.querySelector('.check-box');
+    if (cb) cb.classList.toggle('checked', it.done);
+  }
+}
+
+// ────────────────────────────────────────
+// ADD MODAL
+// ────────────────────────────────────────
+function openAddModal() {
+  document.getElementById('addModal').classList.add('open');
+  document.getElementById('addDate').value = new Date().toISOString().slice(0,10);
+  document.getElementById('addName').focus();
+}
+function closeAddModal() { document.getElementById('addModal').classList.remove('open'); }
+function saveNewItem() {
+  const name = document.getElementById('addName').value.trim();
+  if (!name) { document.getElementById('addName').focus(); return; }
+  const type = document.getElementById('addType').value;
+  const cat = document.getElementById('addCat').value.trim() || type.toUpperCase();
+  const day = document.getElementById('addDay').value;
+  const date = document.getElementById('addDate').value;
+  const qty = document.getElementById('addQty').value || '—';
+  const note = document.getElementById('addNote').value || '—';
+  const dow = ['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'].includes(day) ? day : day.split(' ')[0];
+  const id = 'custom_' + (++nextId);
+  items.push({ id, date, dow, type, cat, name, qty, note, status:'pending', done:false });
+  items.sort((a,b) => a.date.localeCompare(b.date));
+  saveState(); render(); closeAddModal();
+  // clear
+  ['addName','addCat','addQty','addNote'].forEach(id => document.getElementById(id).value = '');
+  showToast('✓ Item adicionado!');
+}
+
+// ────────────────────────────────────────
+// DELETE MODAL
+// ────────────────────────────────────────
+function openDelModal(id) {
+  const it = items.find(i => i.id === id);
+  if (!it) return;
+  pendingDeleteId = id;
+  document.getElementById('delItemName').textContent = it.name;
+  document.getElementById('delModal').classList.add('open');
+}
+function closeDelModal() { document.getElementById('delModal').classList.remove('open'); pendingDeleteId = null; }
+function confirmDelete() {
+  if (!pendingDeleteId) return;
+  items = items.filter(i => i.id !== pendingDeleteId);
+  saveState(); render(); closeDelModal();
+  showToast('Item removido');
+}
+
+// ────────────────────────────────────────
+// CALENDAR VIEW
+// ────────────────────────────────────────
+function setView(v) {
+  currentView = v;
+  document.getElementById('listView').style.display = v === 'list' ? '' : 'none';
+  document.getElementById('calView').style.display = v === 'cal' ? '' : 'none';
+  document.getElementById('btnList').classList.toggle('active', v === 'list');
+  document.getElementById('btnCal').classList.toggle('active', v === 'cal');
+  if (v === 'cal') renderCal();
+}
+
+function renderCal() {
+  const year = calMonth.getFullYear();
+  const month = calMonth.getMonth();
+  const monthNames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  const today = new Date().toISOString().slice(0,10);
+
+  // First day of month (JS: 0=Sun, need to shift to Mon)
+  let firstDow = new Date(year, month, 1).getDay(); // 0=Sun
+  firstDow = (firstDow + 6) % 7; // Mon=0 ... Sun=6
+
+  const daysInMonth = new Date(year, month+1, 0).getDate();
+
+  // Build date→items map
+  const itemsByDate = {};
+  items.filter(matchesFilter).forEach(it => {
+    const d = it.date;
+    if (!itemsByDate[d]) itemsByDate[d] = [];
+    itemsByDate[d].push(it);
+  });
+
+  const dayHeads = ['Seg','Ter','Qua','Qui','Sex','<span class="sat" style="color:var(--rest)">Sáb 🌿</span>','<span class="sun" style="color:var(--accent)">Dom 📚</span>'];
+
+  let html = `<div class="cal-view active" id="calInner">
+    <div class="cal-nav">
+      <button class="cal-nav-btn" onclick="prevMonth()">‹</button>
+      <span class="cal-month-label">${monthNames[month]} ${year}</span>
+      <button class="cal-nav-btn" onclick="nextMonth()">›</button>
+    </div>
+    <div class="cal-grid-head">${dayHeads.map(d=>`<div class="cal-day-head">${d}</div>`).join('')}</div>
+    <div class="cal-grid">`;
+
+  // empty cells before first day
+  for (let i = 0; i < firstDow; i++) html += '<div class="cal-cell empty"></div>';
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const dow = (firstDow + d - 1) % 7; // 0=Mon...5=Sat,6=Sun
+    const isSat = dow === 5, isSun = dow === 6;
+    const isToday = dateStr === today;
+    const dayItems = itemsByDate[dateStr] || [];
+    const cls = [
+      'cal-cell',
+      isSat ? 'sat-cell' : '',
+      isSun ? 'sun-cell' : '',
+      isToday ? 'today' : ''
+    ].filter(Boolean).join(' ');
+
+    html += `<div class="${cls}"><div class="cal-date-num">${d}</div>`;
+    dayItems.slice(0,3).forEach(it => {
+      const dotCls = `cal-item-dot ${it.type}-dot ${it.done?'done-dot':''}`;
+      html += `<div class="${dotCls}" onclick="jumpToItem('${it.id}')" title="${it.name}">${it.name.substring(0,28)}</div>`;
+    });
+    if (dayItems.length > 3) html += `<div class="cal-item-count" style="font-size:9px;color:var(--text3)">+${dayItems.length-3} mais</div>`;
+    html += '</div>';
+  }
+
+  html += '</div></div>';
+  document.getElementById('calView').innerHTML = html;
+}
+
+function prevMonth() { calMonth.setMonth(calMonth.getMonth()-1); renderCal(); }
+function nextMonth() { calMonth.setMonth(calMonth.getMonth()+1); renderCal(); }
+
+function jumpToItem(id) {
+  setView('list');
+  setTimeout(() => {
+    const el = document.getElementById('card_' + id);
+    if (el) { el.scrollIntoView({behavior:'smooth',block:'center'}); el.style.outline = '2px solid var(--accent)'; setTimeout(()=>el.style.outline='',1500); }
+  }, 100);
+}
+
+// ────────────────────────────────────────
+// THEME
+// ────────────────────────────────────────
+function initTheme() {
+  const saved = localStorage.getItem('karina_theme');
+  const pref = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  applyTheme(pref);
+}
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  document.getElementById('themeBtn').textContent = t === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('karina_theme', t);
+}
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme');
+  applyTheme(cur === 'dark' ? 'light' : 'dark');
+}
+
+// ────────────────────────────────────────
+// UTILS
+// ────────────────────────────────────────
+function formatDate(d) {
+  if (!d) return '';
+  const [y,m,day] = d.split('-');
+  const months = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+  return `${parseInt(day)} ${months[parseInt(m)-1]}`;
+}
+
+function getWeekStart(dateStr) {
+  const d = new Date(dateStr + 'T00:00:00');
+  const day = d.getDay(); // 0=Sun
+  const diff = (day === 0) ? -6 : 1 - day; // shift to Monday
+  const mon = new Date(d); mon.setDate(d.getDate() + diff);
+  return mon.toISOString().slice(0,10);
+}
+
+function formatWeekLabel(weekStartStr) {
+  const d = new Date(weekStartStr + 'T00:00:00');
+  const end = new Date(d); end.setDate(d.getDate() + 6);
+  const months = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+  return `${d.getDate()} ${months[d.getMonth()]} – ${end.getDate()} ${months[end.getMonth()]}`;
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// close modals on overlay click
+document.getElementById('addModal').addEventListener('click', e => { if(e.target === e.currentTarget) closeAddModal(); });
+document.getElementById('delModal').addEventListener('click', e => { if(e.target === e.currentTarget) closeDelModal(); });
+
+// keyboard
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeAddModal(); closeDelModal(); }
+  if (e.key === 'Enter' && document.getElementById('addModal').classList.contains('open')) saveNewItem();
+});
+
+// ────────────────────────────────────────
+// INIT
+// ────────────────────────────────────────
+initTheme();
+loadState();
+updateProgress();
+render();
+</script>
+</body>
+</html>
